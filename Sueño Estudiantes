@@ -1,0 +1,29 @@
+# Estad-stica2019
+setwd("/home/manuel/Descargas/R/")
+
+Sueno_Estudiantes<-read.csv(file="jasplata_SueñoEstudiantes.csv", sep = ",")
+
+summary(Sueno_Estudiantes$sleep)
+summary(Sueno_Estudiantes$genero)
+
+hist(Sueno_Estudiantes$sleep, main="Sueño de los Estudiantes", xlab="Horas de sueño", 
+     ylab="Número de estudiantes",
+     col="dodgerblue4", border = "darkred", 
+     ylim = range(0:60),) ##ylim define el rango del eje
+
+boxplot(Sueno_Estudiantes$sleep, main="Horas de Sueño", 
+        ylab="Número de estudiantes",
+        col="dodgerblue4", border = "darkred")
+
+
+par(mfrow=c(1,2))
+boxplot(Sueno_Estudiantes$sleep[Sueno_Estudiantes$genero==0],
+        main="Horas de sueño hombres", col="coral1")
+boxplot(Sueno_Estudiantes$sleep[Sueno_Estudiantes$genero==1], 
+        main="Horas de sueño mujeres", col="seagreen4")
+
+?par
+?hist
+?pie
+?boxplot
+?hist
