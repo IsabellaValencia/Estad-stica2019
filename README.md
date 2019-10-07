@@ -1,1 +1,0 @@
-# Estad-stica2019

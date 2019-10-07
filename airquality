@@ -1,0 +1,24 @@
+# Estad-stica2019
+data("airquality")
+View(airquality)
+summary(airquality$Ozone)
+Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   1.00   18.00   31.50   42.13   63.25  168.00      37 
+> summary(airquality$Solar.R)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+7.0   115.8   205.0   185.9   258.8   334.0       7 
+
+> summary(airquality$Wind)
+Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+1.700   7.400   9.700   9.958  11.500  20.700 
+
+> summary(airquality$Temp)
+Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+56.00   72.00   79.00   77.88   85.00   97.00 
+
+> boxplot(airquality$Ozone, main="Calidad de aire-Ozono", ylab="Concentración en (ppb)", col="purple")
+boxplot(airquality$Solar.R, main="Calidad de aire-Radiación Solar", ylab="Radiación en (lang)", col="green")
+boxplot(airquality$Wind, main="Calidad de aire- Viento", ylab= "Velocidad en (mph)", col="orange")
+
+hist(airquality$Ozone, main="Calidad de aire-Ozono", xlab="ylab="Concentración en (ppb)", col="purple")
+hist(airquality$Solar.R, main="Calidad de aire-Radiación Solar", ylab="Radiación en (lang)", col="green")
