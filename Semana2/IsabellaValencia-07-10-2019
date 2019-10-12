@@ -478,7 +478,7 @@ Cuando hablamos de variables de medida como longitud ancho etc, podemos hacer lo
 
 ```{r minleng, echo=TRUE}
 # Longitud de las tortugas
-tortues$long
+tortues$longwrite.csv(x=datos2, file="Minimatriz.csv")
 
 # no tendría sentido, debemos organizar en rangos
 table(tortues$long)
@@ -581,15 +581,14 @@ Tabla_medidas_prp2 <- cbind.data.frame(Dataframe_Alouatta, prpAlouatta, prpAloua
 Tabla_medidas_prp2
 colnames(Tabla_medidas_prp2)<- c( "Altura_machos", "Altura_hembras","Peso_machos", "Peso_hembras", "Proporción_machos", "Proporción_hembras")
 
+hist(Tabla_medidas_prp2$Altura_hembras, main="Altura de hembras del género Alouatta", col="chocolate1", border="chocolate", xlab="Measurements in cm")
 
-hist(Tabla_medidas_prp2$Altura_hembras, main="Altura de hembras del género Alouatta", col="blueviolet", border="grey69", xlab="Measurements in cm")
+hist(Tabla_medidas_prp2$Altura_machos, main="Altura de machos del género Alouatta", col="darkgoldenrod2", border="grey69", xlab="Measurements in cm")
 
-hist(Tabla_medidas_prp2$Altura_machos, main="Altura de hembras del género Alouatta", col="seagreen4", border="grey69", xlab="Measurements in cm")
+hist(Tabla_medidas_prp2$Peso_hembras, main="Peso de hembras del género Alouatta", col="brown3", border="grey69", xlab="Measurements in kg")
 
-hist(Tabla_medidas_prp2$Altura_machos, main="Altura de machos del género Alouatta", col="seagreen4", border="grey69", xlab="Measurements in cm")
+hist(Tabla_medidas_prp2$Peso_machos, main="Peso de machos del género Alouatta", col="cyan4", border="grey69", xlab="Measurements in kg")
 
-hist(Tabla_medidas_prp2$Peso_hembras, main="Peso de hembras del género Alouatta", col="cadetblue", border="grey69", xlab="Measurements in kg")
 
-hist(Tabla_medidas_prp2$Peso_machos, main="Peso de hembras del género Alouatta", col="seashell3", border="grey69", xlab="Measurements in kg")
 
 [3]: http://www.rpubs.com/AlexMSalcium/Ejemplos_Chidos 
