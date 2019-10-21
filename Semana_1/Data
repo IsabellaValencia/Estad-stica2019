@@ -128,7 +128,7 @@ x + 1
 ```
 
 **Ejer:** multiplique *x* por 2 y súmele 1 y divídalo por 1.5, ese resultado elévelo al cuadrado. Esto se escribe igual que en una calculadora manual.
-
+((x*2)+1/1.5)^2
 
 ### Clases de objetos
 
@@ -164,7 +164,7 @@ logicos
 
 ```
 **Ejer:** tome cualquier objeto anterior y pregúntele la clase
-
+class(animales)
 
 También podemos generar vectores con cosas internas de distintos tipos, pero a la final todo el vector tendrá una sola clase
 
@@ -191,8 +191,9 @@ grupo_altura
 ```
 \
 
-**Ejer:** Hasta el momento hemos generado varios vectores/objetos/variables, podemos listarlas usando la función ls() o ls.str(), la cual nos permite, no solo ver las variables, sino el tipo de cada una.
-
+**Ejer:** Hasta el momento hemos generado varios vectores/objetos/variables, podemos listarlas usando la función
+ls() o ls.str(), la cual nos permite, no solo ver las variables, sino el tipo de cada una.
+ls(grupo_altura)
 ### Matrices, DataFrames, Listas
 
 
@@ -261,12 +262,10 @@ array(data = c(vector1,vector2),dim = c(3,4,2))
 ```
 
 
-**Ejer:** Cree un una secuencia que repita los números de 1 a 4, 3 veces y asigne la a un objeto llamado vector1. Ahora, cree una secuencia de números pares del 2 al 24 y asignela a un objeto llamado vector2. Genere un arreglo con ambos vectores y busque la columna 2, fila 1 de la segunda matriz y para la primera.
+**Ejer:** Cree un una secuencia que repita los números de 1 a 4, 3 veces y asigne la a un objeto llamado vector1. 
+Ahora, cree una secuencia de números pares del 2 al 24 y asignela a un objeto llamado vector2. 
+Genere un arreglo con ambos vectores y busque la columna 2, fila 1 de la segunda matriz y para la primera.
 
-
-
-
-```{r arreg, echo=F}
 vector1<-rep(1:4,3)
 vector1
 vector2<- seq(2,24,2)
@@ -313,7 +312,6 @@ iris[36,1]
 **Ejer:**  tome la primera columna  y la segunda, concatenelas con c() ¿Qué encuentra?
 Ahora, tome amabas columnas y use la funcion cbind(), asignelo a un objeto llamado minuevatabla.
 Haga lo mismo, con las filas del 1:5 y del 10:30, use primero c() y luego rbind() ¿Qué encuentra? 
-\
 
 Busque el archivo suministrado por el profesor, cárguelo a R y revise qué contiene. Extraiga las 5 primeras columnas con las 10 primeras filas, escriba esa nueva matriz como csv en su computador.
 
