@@ -256,6 +256,16 @@ Existen otro tipo de distribuciones que pueden modelar fenómenos biológicos c�
 
 [1]: https://es.khanacademy.org/science/biology/ecology/population-growth-and-regulation/a/exponential-logistic-growth
 
+ni<- 1000
+t<-1:24
+n_t<- ni*(2)^t
+
+n_t
+
+ [1]        2000        4000        8000       16000       32000       64000      128000      256000      512000
+[10]     1024000     2048000     4096000     8192000    16384000    32768000    65536000   131072000   262144000
+[19]   524288000  1048576000  2097152000  4194304000  8388608000 16777216000
+
 
 ## Muestreo
  Cuando se muestrea aleatoriamente, se busca que esa porción de la población sea extrapolable a los parámetros poblacionales. Generalmente en biología usamos muestreos probabilisticos.
