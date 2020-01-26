@@ -318,13 +318,42 @@ El muestreo sistemático consta de 4 pasos:
 
 **Ejer:** Simule 5000 peces de criadero en un tanque, todos son de la misma cohorte. Imagine que los organiza en fila y quiere seleccionar 100 para calcular estadísticos de la población. Haga un muestreo sistemático y calcule los estadísticos y descriptivos vistos anteriormente. Grafique.
 
-N<-1:5000
-n<-100
-k<- N/n
-x<-abs(rnorm(5000, 10, 1))
-k<-50
-#n<- sample( x, 100, replace = FALSE)
-table(x)
-Muestra2<- seq(50, 5000, by=50)
+Pob_Peces<-1:5000
 
-Poscionesmuestra<- x[Muestra2]
+n<- 100
+
+k<- Pob_Peces/n
+
+x<-abs(rnorm(5000, 10, 1))
+
+Poblacion_peces<-cbind(Pob_Peces,x)
+
+Muestra<- Poblacion_peces[seq(50, 5000, by=50)
+
+#Cálculo de estadístcos:
+
+Media<-mean(Muestra[,2])
+Moda<-mode(Muestra[,2])
+Rango<-range(Muestra[,2])
+Mediana<- median(Muestra[,2])
+
+ 
+ hist((Muestra[,2], 
+ col= "aquamarine3", 
+ border = "black", 
+ prob = TRUE, 
+ xlim = c(7,13),
+ ylim c(0.0, 0.5)
+ xlab = "Longitud",
+ main = "Frecuencias de longitud de aletas")
+ 
+lines(density(Muestra[,2]), col="aquamarine4", lwd = 3)
+ 
+abline(v= Media, col = "chartreuse3", lwd = 2)
+abline(v= Mediana, col = "coral3", lwd = 2)
+abline(v= 10.2, col = "rosybrown3", lwd =2)
+
+legend(x= "topright", c("density" , "media","mediana", "moda"), 
+col= c("chartreuse4", "coral3", "violet", "rosybrown3"), lwd = 2)
+
+
