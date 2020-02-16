@@ -701,3 +701,64 @@ for (i in 2:23){
 plot(density(Magud2007[,i]), main = colnames(Magud2007)[i])
 }
 skewness(Magud2007[,25], na.rm = FALSE, method = "fisher")
+
+
+
+###### Análisis de la longitud del cuerpo en las cuatro localidades.
+
+I_BK <- x$`I BK`$A
+II_IV<-x$`II IV`$A
+I_IV<-x$`I IV`$A
+II_Bk<-x$`II BK`$A
+
+library(psych)
+
+describe.by(I_BK)
+describe.by(I_IV)
+describe.by(II_Bk)
+describe.by(II_IV)
+
+
+A<- cbind(I_BK,II_Bk,I_IV,II_IV)
+boxplot(A, names=c("I Bk","II Bk", "I IV", "II IV"), frame = FALSE, col= c("paleturquoise3", "paleturquoise4",
+"palevioletred","palevioletred1"), xlab="Lugares muestreados", ylab="Longitud del cuerpo", main ="Análisis de la logitud del cuerpo")
+
+## Análisis de la separacción de los tuberculos 1b
+I_BK2<- x$`I BK`$P
+II_IV2<-x$`II IV`$P
+I_IV2<-x$`I IV`$P
+II_Bk2<-x$`II BK`$P
+
+
+P<- cbind(I_BK2,II_Bk2,I_IV2,II_IV2)
+boxplot(P, names=c("I Bk","II Bk", "I IV", "II IV"), frame = FALSE, col= c("palevioletred3", "palevioletred4",
+"papayawhip","peachpuff"), xlab="Lugares muestreados", ylab="Separacción de los tuberculos", ylim=c(8, 16),
+main="Análisis de la separación de los tubércuolos")
+describe.by(I_BK2)
+describe.by(I_IV2)
+describe.by(II_Bk2)
+describe.by(II_IV2)
+
+## Análisis de la longitud del tarso 
+
+I_BK3<- x$`I BK`$W
+II_IV3<-x$`II IV`$W
+I_IV3<-x$`I IV`$W
+II_Bk3<-x$`II BK`$W
+
+W<- cbind(I_BK3,II_Bk3,I_IV3,II_IV3)
+boxplot(W, names=c("I Bk","II Bk", "I IV", "II IV"), frame = FALSE, col= c("palegreen3", "palegreen4",
+ "paleturquoise","paleturquoise1"), xlab="Lugares muestreados", ylab="Longitud del tarse",
+        main="Análisis de la longitud del tarso")
+describe.by(I_BK3)
+describe.by(I_IV3)
+describe.by(II_Bk3)
+describe.by(II_IV3)
+
+#Dentro del análisis realizado en el artículo se propone como hipótesis la influencia de las variedades de C. arvense 
+encontradas en dos lugares, sobre en morfología de Aceria anthocoptes. Teniendo en cuenta el análisis realizado, se logra
+evidenciar la incidencia directa del lugar de muestreo (Bežanijska kosa (Bk) e Ivanjica (IV)), sobre la variación de los 
+caracteres demostrado por lo rangos en los cuales se distribuyen las medidas de cada lugar. Así mismo se puede afirmar que los 
+organismos tienden a tener tamaños mas grandes, en cuanto a longitud del tarso, longitud corporal y separación de tubérculos en 
+la segunda locación, por lo cual se podrían determinar otras condiciones ambientales además del hospedero en el cual se encuentran, 
+para así encontrar la condición que determina este patrón.  
