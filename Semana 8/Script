@@ -1,0 +1,322 @@
+---
+title: "Semana8_ES"
+author: "Vra"
+date: "01/28/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Error Estandar
+https://www.youtube.com/watch?v=A82brFpdr9g
+
+
+Es el error asociado a una media poblacional estimada a partir de muestras poblacionales. Cuando tomamos varias muestras de una poblaciÃ³n, cada muestra podrÃ­a tener una media y una desviaciÃ³n estÃ¡ndar distinta. Si tomamos la media de las muestras y medimos la 'DesviaciÃ³n estÃ¡ndar de esas muestras' estarÃ­amos mirando el error asociado a esas muestras. Dado esto, asumirÃ­amos que necesitamos varias muestras para poder calcular el error estÃ¡ndar, sin embargo esta mÃ©trica podrÃ­a ser calculada a partir de una sola muestra, siempre y cuando estemos seguros que la poblaciÃ³n sigue una distribuciÃ³n normal.
+
+
+Imagine una poblaciÃ³n de 5000 tortugas de la especie *Caretta caretta*. Una nidada podrÃ­a tener entre 20 a 50 huevos.
+
+
+```{r ES}
+set.seed(999)
+
+  # Generar la poblaciÃ³n
+  
+  pop <- ceiling(rnorm(5000, mean = 35,sd = 1))
+  ?ceiling
+  
+  # Tomar muestras en tres playas distintas
+  m1 <- sample(x = pop,size = 10, replace = T)
+  m2 <- sample(x = pop,size = 10, replace = T)
+  m3 <- sample(x = pop,size = 10, replace = T)
+  
+  # Calcular media, desviaciÃ³n y error
+  mean(m1)
+  sd(m1)
+  sd(m1)/sqrt(length(m1))
+  
+  mean(m2)
+  sd(m2)
+  sd(m2)/sqrt(length(m2))
+  
+  mean(m3)
+  sd(m3)
+  sd(m3)/sqrt(length(m3))
+  
+  boxplot(cbind(m1,m2,m3))
+  
+  # Error estandar 
+  
+  sd(c(m1,m2,m3))/sqrt(length(c(m1,m2,m3)))
+
+
+```
+
+
+*Ejer:* Â Aumente el valor de desviaciÃ³n estÃ¡ndar y evalÃºe cÃ³mo cambia el error estÃ¡ndar.
+
+ pop <- ceiling(rnorm(5000, mean = 35,sd = 3))
+  
+  
+  # Tomar muestras en tres playas distintas
+  m1 <- sample(x = pop,size = 10, replace = T)
+  m2 <- sample(x = pop,size = 10, replace = T)
+  m3 <- sample(x = pop,size = 10, replace = T)
+  
+  # Calcular media, desviaciÃ³n y error
+  mean(m1)
+  sd(m1)
+  sd(m1)/sqrt(length(m1))
+  
+  mean(m2)
+  sd(m2)
+  sd(m2)/sqrt(length(m2))
+  
+  mean(m3)
+  sd(m3)
+  sd(m3)/sqrt(length(m3))
+  
+  boxplot(cbind(m1,m2,m3))
+  
+  # Error estandar 
+  
+  sd(c(m1,m2,m3))/sqrt(length(c(m1,m2,m3)))
+
+*Ejer:* Â Cambie aumente el tamaÃ±o de la muestra y evalÃºe cÃ³mo cambia el error estÃ¡ndar.
+
+ 
+  pop <- ceiling(rnorm(5000, mean = 35,sd = 1))
+  
+  
+  # Tomar muestras en tres playas distintas
+  m1 <- sample(x = pop,size = 100, replace = T)
+  m2 <- sample(x = pop,size = 100, replace = T)
+  m3 <- sample(x = pop,size = 100, replace = T)
+  
+  # Calcular media, desviaciÃ³n y error
+  mean(m1)
+  sd(m1)
+  sd(m1)/sqrt(length(m1))
+  
+  mean(m2)
+  sd(m2)
+  sd(m2)/sqrt(length(m2))
+  
+  mean(m3)
+  sd(m3)
+  sd(m3)/sqrt(length(m3))
+  
+  boxplot(cbind(m1,m2,m3))
+  
+  # Error estandar 
+  
+  sd(c(m1,m2,m3))/sqrt(length(c(m1,m2,m3)))
+
+Para el caso donde la poblaciÃ³n no sigue una distribuciÃ³n normal.
+
+```{r ES2}
+set.seed(999)
+
+  # Generar la poblaciÃ³n
+  
+ pop <- c(ceiling(rnorm(3500, mean = 30,sd = 3)), ceiling(runif(500, 45,51)))
+  
+myhist <- hist(pop)
+multiplier <- myhist$counts / myhist$density
+mydensity <- density(pop)
+mydensity$y <- mydensity$y * multiplier[1]
+
+plot(myhist)
+lines(mydensity)
+  
+  # Tomar muestras en tres playas distintas
+  m1 <- sample(x = pop,size = 1000, replace = T)
+  m2 <- sample(x = pop,size = 1000, replace = T)
+  m3 <- sample(x = pop,size = 1000, replace = T)
+  
+  # Calcular media, desviaciÃ³n y error
+  mean(m1)
+  sd(m1)
+  sd(m1)/sqrt(length(m1))
+  
+  mean(m2)
+  sd(m2)
+  sd(m2)/sqrt(length(m2))
+  
+  mean(m3)
+  sd(m3)
+  sd(m3)/sqrt(length(m3))
+  
+  
+  # Boxplot
+  boxplot(cbind(m1,m2,m3))
+
+  
+  # Graficar las muestras tomadas
+  muestras <- c(m1,m2,m3)
+  
+  myhist <- hist(muestras)
+  multiplier <- myhist$counts / myhist$density
+  mydensity <- density(muestras)
+  mydensity$y <- mydensity$y * multiplier[1]
+
+plot(myhist)
+lines(mydensity)
+  # Error estÃ¡ndar 
+  
+  sd(c(m1,m2,m3))/sqrt(length(c(m1,m2,m3)))
+  
+  *Ejer:* Cambie el tamaÃ±o de muestra y evalÃºe el valor de error estÃ¡ndar. Â¿CuÃ¡nto deberÃ­a aumentar la muestra para que el error estÃ¡ndar disminuya a la mitad?
+
+    m1 <- sample(x = pop,size = 5, replace = T)
+  m2 <- sample(x = pop,size = 5, replace = T)
+  m3 <- sample(x = pop,size = 5, replace = T)
+  
+  # Calcular media, desviaciÃ³n y error
+  mean(m1)
+  sd(m1)
+  sd(m1)/sqrt(length(m1))
+  
+  mean(m2)
+  sd(m2)
+  sd(m2)/sqrt(length(m2))
+  
+  mean(m3)
+  sd(m3)
+  sd(m3)/sqrt(length(m3))
+  
+  
+  # Boxplot
+  boxplot(cbind(m1,m2,m3))
+
+  
+  # Graficar las muestras tomadas
+  muestras <- c(m1,m2,m3)
+  
+  myhist <- hist(muestras)
+  multiplier <- myhist$counts / myhist$density
+  mydensity <- density(muestras)
+  mydensity$y <- mydensity$y * multiplier[1]
+
+plot(myhist)
+lines(mydensity)
+  # Error estÃ¡ndar 
+  
+  sd(c(m1,m2,m3))/sqrt(length(c(m1,m2,m3)))
+
+
+*Ejer:* Â Lea el artÃ­culo: http://www.limnetica.com/documentos/limnetica/limnetica-9-1-p-67.pdf
+Simule las variables que evalÃºan en el estudio. Aplique los descriptivos estadÃ­sticos que hemos visto hasta el momento. Grafique.
+Â¿QuÃ© otras preguntas de investigaciÃ³n podrÃ­a formular usando esos datos? Tome los diagramas de flujo de test estadÃ­sticos y de graficado. Tome una de las preguntas que formulÃ³ y diseÃ±e el anÃ¡lisis.
+
+##Variables: 
+
+#Bióticas(Eje mayordel huevo (mm), Eje menor del huevo (mm), Volumen del huevo (m], Peso del huevo  (mg), peso de la hembra con huevos, peso de la hembra sin huevos, peso de la puesta, número de huevos, longitud corporal, tiempo de eclosión)
+
+# Abióticas( salinidad y temperatura )
+
+set.seed(999)
+
+
+#1. Muestras (eje mayor de los huevos) tomadas en Ayamonte
+
+I<- rnorm(30, mean= 0.910, sd= 0.049)
+
+II<- rnorm(30, mean= 0.946, sd= 0.046)
+
+III<- rnorm(30, mean= 1.030, sd= 0.055)
+
+IV<- rnorm(30, mean= 1.098, sd= 0.038)
+
+Va.b<- rnorm(30, mean= 1.196, sd= 0.029)
+
+Vc<- rnorm(30, mean= 1.555, sd= 0.081)
+ 
+hist(Vc)
+EjemayorA<- data.frame(cbind(I, II, III, Va.b, Vc))
+
+
+#2.  Muestras (eje menor de los huevos) tomadas en Ayamonte
+
+I_<- rnorm(30, mean= 0.683, sd= 0.047)
+
+II_<- rnorm(30, mean= 0.716, sd= 0.059)
+
+III_<- rnorm(30, mean= 0.793, sd= 0.021)
+
+IV_<- rnorm(30, mean= 0.818, sd= 0.038)
+
+Va.b_<- rnorm(30, mean= 0.816, sd= 0.035)
+
+Vc_<- rnorm(30, mean= 0.851, sd= 0.049)
+
+EjemenorA<- data.frame(cbind(I_, II_, III_, Va.b_, Vc_))
+
+Ejes<- cbind(EjemayorA, EjemenorA)
+
+#3. Talla de un "grupo" de hembras
+VillafrancoT<- rnorm(50, mean= 3.5, sd= 0.18)
+
+
+AyamonteT<- rnorm(50, mean= 3.74, sd= 0.20)
+
+
+VillafrancoP<- rnorm(50, mean= 0.68, sd= 0.11)
+
+
+AyamonteP<- rnorm(50, mean= 0.75, sd= 0.11)
+
+
+VillafrancoH<- ceiling(rnorm(50, mean= 298, sd= 64.89))
+hist(VillafrancoH)
+
+AyamonteH<- ceiling(rnorm(50, mean= 218, sd= 75.15))
+
+
+#4. Muestras (volumen) tomadas en Ayamonte
+
+I.V<- rnorm(30, mean= 0.223, sd= 0.034)
+
+II.V<- rnorm(30, mean= 0.247, sd= 0.055)
+
+III.V<- rnorm(30, mean= 0.0339, sd= 0.025)
+
+IV.V<- rnorm(30, mean= 0.386, sd= 0.041)
+
+Va.b.V<- rnorm(30, mean= 0.418, sd= 0.039)
+
+Vc.V<- rnorm(30, mean= 0.593, sd= 0.081)
+
+VolumenA<-  data.frame(cbind(I.V, II.V, III.V, Va.b.V, Vc.V))
+
+VolumenA
+
+#5. Muestras (peso) tomadas en Ayamonte
+I.P<- rnorm(30, mean= 0.492 , sd= 0.142)
+
+II.P<- rnorm(30, mean= 0.430, sd= 0.154)
+
+III.P<- rnorm(30, mean= 0.428, sd= 0.106)
+
+IV.P<- rnorm(30, mean= 0.576, sd= 0.120)
+
+Va.b.P<- rnorm(30, mean= 0.785, sd= 0.221)
+
+Vc.P<- rnorm(30, mean= 0.593, sd= 0.081)
+
+VolumenA<-  data.frame(cbind(I.P, II.P, III.P, Va.b.P, Vc.P))
+
+
+https://scielo.conicyt.cl/scielo.php?pid=s0717-95022007000200013&script=sci_arttext
+
+https://scielo.conicyt.cl/scielo.php?pid=S0716-078X2001000300010&script=sci_arttext
+
+https://scielo.conicyt.cl/scielo.php?pid=S0716-078X2004000100005&script=sci_arttext
+
+http://www.scielo.br/scielo.php?pid=S1984-46702011000100002&script=sci_arttext
+
+https://pdfs.semanticscholar.org/3c09/08fd588cfee777f7c782d54af33182502e90.pdf?_ga=2.104065088.138521418.1580175359-1296459333.1578954081
+
+
