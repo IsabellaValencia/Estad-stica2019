@@ -1,0 +1,108 @@
+getwd()
+
+setwd("C:/Users/UIS/Downloads/")
+anovas <- read.csv("_Drosophila - Machos.csv")
+install.packages("ggplot2")
+library(ggplot2)
+View(anovas)
+#archivo que contiene el tamaño de las alas, comparado entre las dos localidades (F1 y F2) y entre
+#el genotipo de los machos con ojos rojos y blancos.
+detach(Sexos)
+attach(anovas)
+
+anovAmb <- aov(Longitus.de.alas ~ Localidad)
+summary(anovAmb)
+
+p.box <- ggplot(anovas, aes(x = Localidad, y = Longitus.de.alas  )) +
+  geom_boxplot(  fill = c( "lemonchiffon", "navajowhite2")) +ggtitle("Longitud de las alas")+ylab("Longitud de las alas")+ theme_light()
+
+p.box
+
+#No hay diferencias significativas, p= 0.652
+anovGen <- aov(Longitus.de.alas ~ Color..genotipo.)
+summary(anovGen)
+
+p.box <- ggplot(anovas, aes(x = Color..genotipo., y = Longitus.de.alas  )) +
+  geom_boxplot(  fill = c( "lemonchiffon", "navajowhite2")) +ggtitle("Longitud de las alas")+ylab("Longitud de las alas")+ theme_light()
+
+p.box
+
+#No hay diferencias significativas, p = 0.617
+
+Sexos<- read.csv("_Drosophila - Sexos.csv")
+#Documento tamaño de alas y genotipo XX y XY 
+View(Sexos)
+detach(anovas)
+attach(Sexos)
+anAmb <- aov(Sexos$Longitud.de.alas ~ Sexos$Localidad)
+
+p.box <- ggplot(Sexos, aes(x = Localidad, y = Longitud.de.alas  )) +
+  geom_boxplot(  fill = c( "lemonchiffon", "navajowhite2")) +ggtitle("Longitud de las alas")+ylab("Longitud de las alas")+ theme_light()
+
+p.box
+TukeyHSD(anAmb)
+summary(anAmb)
+
+#Significativamente diferentes, p = 0.982
+
+ansex<- aov(Sexos$Longitud.de.alas ~ Sexos$Sexo)
+TukeyHSD(ansex)
+summary(ansex)
+
+p.box <- ggplot(Sexos, aes(x = Sexo, y = Longitud.de.alas  )) +
+  geom_boxplot(  fill = c( "lemonchiffon", "navajowhite2")) +ggtitle("Longitud de las alas")+ylab("Longitud de las alas")+ theme_light()
+
+p.box
+
+#No hay diferencias significativas, p= 0.544
+
+library("ggplot2")
+
+attach(Sexos)
+p.box <- ggplot(Sexos, aes(x = Sexos$Localidad , y = Sexos$TamaÃ.o.de.las.alas, fill = Sexos$Genotipo)) +
+  geom_boxplot() + ggtitle("Tamaño de alas")
+p.box
+#tamaño del cuerpo 
+
+#en machos
+
+amb <- aov(anovas$Longitud.del.cuerpo ~ anovas$Localidad)
+summary(amb)
+
+p.box <- ggplot(anovas, aes(x = Localidad, y = Longitud.del.cuerpo )) +
+  geom_boxplot(  fill = c( "lemonchiffon", "navajowhite2")) +ggtitle("Tamaño del cuerpo")+ylab("Tamaño del cuerpo")+ theme_light()
+
+p.box
+
+attach(anovas)
+
+
+
+gen <- aov(anovas$Longitud.del.cuerpo ~ anovas$Color..genotipo. )
+summary(gen)
+
+p.box <- ggplot(anovas, aes(x = Color..genotipo., y = Longitud.del.cuerpo )) +
+  geom_boxplot(  fill = c( "lemonchiffon", "navajowhite2")) +ggtitle("Longitud de las alas")+ylab("Tamaño del cuerpo")+ theme_light()
+
+p.box
+
+
+#en sexos
+
+detach(anovas)
+attach(Sexos)
+ambiente <- aov(Sexos$Longitud.del.cuerpo ~ Sexos$Localidad)
+summary(ambiente)
+
+p.box <- ggplot(Sexos, aes(x = Localidad, y = Longitud.del.cuerpo  )) +
+  geom_boxplot(  fill = c( "lemonchiffon", "navajowhite2")) +ggtitle("Longitud de las alas")+ylab("Tamaño del cuerpo")+ theme_light()
+
+p.box
+
+geen <- aov (Sexos$Longitud.del.cuerpo ~ Sexos$Sexo)
+summary(geen)
+
+p.box <- ggplot(Sexos, aes(x = Sexo, y = Longitud.del.cuerpo  )) +
+  geom_boxplot(  fill = c( "lemonchiffon", "navajowhite2")) +ggtitle("Longitud de las alas")+ylab("Tamaño del cuerpo")+ theme_light()
+
+p.box
